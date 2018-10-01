@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using EPC_PolarBearSaver9000.Models;
+using EPC_PolarBearSaver9001.Models;
 
-namespace EPC_PolarBearSaver9000.Controllers
+namespace EPC_PolarBearSaver9001.Controllers
 {
     public class HomeController : Controller
     {

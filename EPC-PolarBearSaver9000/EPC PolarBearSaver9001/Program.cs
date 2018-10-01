@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace EPC_PolarBearSaver9000
+namespace EPC_PolarBearSaver9001
 {
     public class Program
     {

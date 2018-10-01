@@ -1,6 +1,6 @@
 using System;
 
-namespace EPC_PolarBearSaver9000.Models
+namespace EPC_PolarBearSaver9001.Models
 {
     public class ErrorViewModel
     {

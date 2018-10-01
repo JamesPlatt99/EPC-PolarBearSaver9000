@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPC PolarBearSaver9001", "EPC PolarBearSaver9001\EPC PolarBearSaver9001.csproj", "{D3B3EAB3-75ED-4E77-9E47-CB7D4EEC2011}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "..\BusinessLayer\BusinessLayer.csproj", "{8DF164A2-54E1-46D6-80CA-0E278503C9AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D3B3EAB3-75ED-4E77-9E47-CB7D4EEC2011}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3B3EAB3-75ED-4E77-9E47-CB7D4EEC2011}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3B3EAB3-75ED-4E77-9E47-CB7D4EEC2011}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DF164A2-54E1-46D6-80CA-0E278503C9AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DF164A2-54E1-46D6-80CA-0E278503C9AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DF164A2-54E1-46D6-80CA-0E278503C9AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DF164A2-54E1-46D6-80CA-0E278503C9AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

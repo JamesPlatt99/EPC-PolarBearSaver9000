@@ -53,6 +53,18 @@ namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
+            [Required]
+            [StringLength(8, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [DataType(DataType.PostalCode)]
+            [Display(Name = "Postcode")]
+            public string PostCode { get; set; }
+
+            [Required]
+            [StringLength(255, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
+            [DataType(DataType.Text)]
+            [Display(Name = "Address Line 1")]
+            public string AddressLine1 { get; set; }
+
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
@@ -69,7 +81,7 @@ namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Username, Email = Input.Username };
+                var user = new IdentityUser { UserName = Input.Username,   };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -84,7 +96,7 @@ namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Username, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
+                    SaveAddress();
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
@@ -96,6 +108,25 @@ namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private void SaveAddress()
+        {
+            var address = BuildAddress();
+            _context.Address.Add(address);
+            _context.SaveChanges();
+        }
+
+        private DBContext.Models.Address BuildAddress()
+        {
+            var userID = _context.AspNetUsers.Where(n => n.UserName == Input.Username).Single().Id;
+            var address = new DBContext.Models.Address()
+            {
+                PostCode = Input.PostCode,
+                AddressLine1 = Input.AddressLine1,
+                UserId = userID
+            };
+            return address;
         }
     }
 }

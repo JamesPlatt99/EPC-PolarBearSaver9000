@@ -42,6 +42,10 @@ namespace DBContext.Models
                 entity.Property(e => e.AddressLine1).HasMaxLength(255);
 
                 entity.Property(e => e.PostCode).HasMaxLength(8);
+
+                entity.Property(e => e.UserId)
+                    .HasColumnName("UserID")
+                    .HasMaxLength(450);
             });
 
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
@@ -124,8 +128,6 @@ namespace DBContext.Models
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
 
-                entity.Property(e => e.AddressId).HasColumnName("AddressID");
-
                 entity.Property(e => e.Email).HasMaxLength(256);
 
                 entity.Property(e => e.NormalizedEmail).HasMaxLength(256);
@@ -133,11 +135,6 @@ namespace DBContext.Models
                 entity.Property(e => e.NormalizedUserName).HasMaxLength(256);
 
                 entity.Property(e => e.UserName).HasMaxLength(256);
-
-                entity.HasOne(d => d.Address)
-                    .WithMany(p => p.AspNetUsers)
-                    .HasForeignKey(d => d.AddressId)
-                    .HasConstraintName("FK__AspNetUse__Addre__4F7CD00D");
             });
 
             modelBuilder.Entity<AspNetUserTokens>(entity =>

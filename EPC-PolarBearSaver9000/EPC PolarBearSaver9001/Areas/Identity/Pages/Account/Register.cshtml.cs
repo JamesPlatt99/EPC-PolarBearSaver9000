@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Encodings.Web;
@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Linq;
 
 namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
 {
@@ -19,6 +20,7 @@ namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        public readonly DBContext.Models.EPC_PolarBearSaver9001Context _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -30,6 +32,7 @@ namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _context = DBContext.Context.polarBearSaver9001Context;
         }
 
         [BindProperty]

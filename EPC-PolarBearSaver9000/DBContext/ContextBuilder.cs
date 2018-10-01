@@ -10,10 +10,10 @@ namespace DBContext
         #region public methods
         public T GetContext(string connectionString)
         {
-            var sageOptionsBuilder = new DbContextOptionsBuilder<T>();
-            sageOptionsBuilder.UseSqlServer(connectionString);
+            var optionsBuilder = new DbContextOptionsBuilder<T>();
+            optionsBuilder.UseSqlServer(connectionString);
             var context = Activator.CreateInstance(typeof(T),
-              new object[] { sageOptionsBuilder.Options }) as T;
+              new object[] { optionsBuilder.Options }) as T;
             return context;
         }
         public static void GetPolarBearSaver9001Context(IConfiguration configuration)

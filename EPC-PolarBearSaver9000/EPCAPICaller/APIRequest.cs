@@ -33,7 +33,7 @@ namespace EPCAPICaller
 
             Wrapper wrapper = JsonConvert.DeserializeObject<Wrapper>(response2.Content);
 
-            return wrapper.rows.Where(n=>n.address.Equals(postcode)).Select(n=>n.address);
+            return wrapper.rows.Where(n=>n.address.Equals(postcode)).Select(n=>n.address).OrderBy(n=>n);
         }
 
     }

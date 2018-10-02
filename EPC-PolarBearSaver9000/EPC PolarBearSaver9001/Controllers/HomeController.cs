@@ -11,18 +11,13 @@ namespace EPC_PolarBearSaver9001.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult RewardsPage()
         {
             return View();
         }
 
         [HttpGet]
-        public IActionResult API()
+        public IActionResult Index()
         {
             
               AddressFinder addressFinder = new AddressFinder
@@ -34,7 +29,7 @@ namespace EPC_PolarBearSaver9001.Controllers
         }
 
         [HttpPost]
-        public IActionResult API(string Postcode)
+        public IActionResult Index(string Postcode)
         {
             AddressFinder addressFinder = new AddressFinder();
             IEnumerable<string> list = EPCAPICaller.APIRequest.GetAddresses(Postcode);

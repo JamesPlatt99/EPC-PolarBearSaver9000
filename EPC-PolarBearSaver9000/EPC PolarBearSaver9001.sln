@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPC_PolarBearSaver9001", "EPC PolarBearSaver9001\EPC_PolarBearSaver9001.csproj", "{D3B3EAB3-75ED-4E77-9E47-CB7D4EEC2011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPC_PolarBearSaver9001", "EPC PolarBearSaver9001\EPC_PolarBearSaver9001.csproj", "{D3B3EAB3-75ED-4E77-9E47-CB7D4EEC2011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "..\BusinessLayer\BusinessLayer.csproj", "{8DF164A2-54E1-46D6-80CA-0E278503C9AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "..\BusinessLayer\BusinessLayer.csproj", "{8DF164A2-54E1-46D6-80CA-0E278503C9AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBContext", "DBContext\DBContext.csproj", "{C9E136AC-980C-453C-AEC7-0A30021675C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBContext", "DBContext\DBContext.csproj", "{C9E136AC-980C-453C-AEC7-0A30021675C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

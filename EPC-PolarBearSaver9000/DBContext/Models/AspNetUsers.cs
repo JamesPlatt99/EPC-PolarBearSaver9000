@@ -11,6 +11,8 @@ namespace DBContext.Models
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
+            FriendsUser1 = new HashSet<Friends>();
+            FriendsUser2 = new HashSet<Friends>();
         }
 
         public string Id { get; set; }
@@ -33,5 +35,7 @@ namespace DBContext.Models
         public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
         public ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public ICollection<Friends> FriendsUser1 { get; set; }
+        public ICollection<Friends> FriendsUser2 { get; set; }
     }
 }

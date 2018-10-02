@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model EPC_PolarBearSaver9001.Models.SocialModel
+@{
+    ViewData["Title"] = "Social";
+}
+
+<div id="addFriends">
+    <form asp-route="@Url.Action("Index", "Social", new { searchQuery = Model.SearchQuery })" method="post">
+        <input type="text" id="searchFriendsTextBox" asp-for="SearchQuery" />
+        <input type="submit" formaction="/Social/Index" />
+    </form>
+
+    <div>
+        Search results
+        @foreach (DBContext.Models.AspNetUsers user in Model.SearchResults)
+        {
+            <form asp-route="@Url.Action("AddFriend", "Social", new { userId = Model.UserID})" method="post">
+                <label>@user.UserName</label>
+                <input type="hidden" value="@user.Id" asp-for="UserID" />
+                <input type="submit" formaction="/Social/AddFriend" />
+            </form>
+        }
+    </div>
+    <div>
+        Cur friends
+
+        @foreach (DBContext.Models.AspNetUsers user in Model.Friends)
+        {
+            <form asp-route="@Url.Action("RemoveFriend", "Social", new { userId = Model.UserID})" method="post">
+                <label>@user.UserName</label>
+                <input type="hidden" value="@user.Id" asp-for="UserID" />
+                <input type="submit" formaction="/Social/RemoveFriend" />
+            </form>
+        }
+    </div>
+</div>

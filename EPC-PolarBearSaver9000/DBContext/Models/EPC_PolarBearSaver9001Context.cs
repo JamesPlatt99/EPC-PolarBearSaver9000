@@ -23,6 +23,7 @@ namespace DBContext.Models
         public virtual DbSet<AspNetUserRoles> AspNetUserRoles { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
+        public virtual DbSet<Friends> Friends { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -148,6 +149,31 @@ namespace DBContext.Models
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.AspNetUserTokens)
                     .HasForeignKey(d => d.UserId);
+            });
+
+            modelBuilder.Entity<Friends>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.User1Id)
+                    .HasColumnName("user1ID")
+                    .HasMaxLength(450);
+
+                entity.Property(e => e.User2Id)
+                    .IsRequired()
+                    .HasColumnName("user2ID")
+                    .HasMaxLength(450);
+
+                entity.HasOne(d => d.User1)
+                    .WithMany(p => p.FriendsUser1)
+                    .HasForeignKey(d => d.User1Id)
+                    .HasConstraintName("FK__Friends__user1ID__5CD6CB2B");
+
+                entity.HasOne(d => d.User2)
+                    .WithMany(p => p.FriendsUser2)
+                    .HasForeignKey(d => d.User2Id)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Friends__user2ID__5DCAEF64");
             });
         }
     }

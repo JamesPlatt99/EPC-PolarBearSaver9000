@@ -1,4 +1,5 @@
-﻿using RestSharp.Deserializers;
+﻿using Newtonsoft.Json;
+using RestSharp.Deserializers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,13 @@ namespace EPCPolarBearSaverAPI.Models
 {
     public class Rows
     {
-        public string address { get; set; }
+        [JsonProperty("address")]
+        public string Address { get; set; }
 
-        [DeserializeAs(Name = "inspection-date")]
-        public DateTime inspectionDate { get; set; }
+        [JsonProperty("inspection-date")]
+        public DateTime InspectionDate { get; set; }
+
+        [JsonProperty("environment-impact-current")]
+        public int EnvironmentImpactCurrent { get; set; }
     }
 }

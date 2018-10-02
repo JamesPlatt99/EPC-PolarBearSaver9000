@@ -100,15 +100,33 @@ namespace EPC_PolarBearSaver9001.Controllers
 
         private Models.SocialModel CreateNewModel()
         {
+
+
             Models.SocialModel model = new Models.SocialModel
             {
-                Friends = _context.Friends.Where(n => n.User1Id == LoggedInUser.Id)
-                                          .Select(n => n.User2)
-                                          .Include(n=>n.Address)
-                                          .ToList(),
+                Friends = GetFriends(),
                 SearchResults = new List<AspNetUsers>()
             };
+            var test = _context.Friends.Where(n => n.User1Id == LoggedInUser.Id)
+                                          .Select(n => n.User2.Address).Where(n=>n != null).ToList();
             return model;
+        }
+
+        private List<AspNetUsers> GetFriends()
+        {
+            var friends = _context.Friends.Where(n => n.User1Id == LoggedInUser.Id)
+                                          .Select(n => n.User2);
+            PrefetchAddresses(friends);
+            return friends.ToList();
+        }
+
+        private void PrefetchAddresses(IQueryable<AspNetUsers> users)
+        {
+            IEnumerable<Address> curAddress;
+            foreach(AspNetUsers user in users)
+            {
+                curAddress = user.Address;
+            }
         }
         #endregion
 

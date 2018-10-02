@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPC_PolarBearSaver9001", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBContext", "DBContext\DBContext.csproj", "{C9E136AC-980C-453C-AEC7-0A30021675C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPCAPICaller", "..\BusinessLayer\EPCAPICaller.csproj", "{8DF164A2-54E1-46D6-80CA-0E278503C9AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPCAPICaller", "EPCAPICaller\EPCAPICaller.csproj", "{8DF164A2-54E1-46D6-80CA-0E278503C9AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -37,7 +37,7 @@ namespace EPC_PolarBearSaver9001.Controllers
         public IActionResult API(string Postcode)
         {
             AddressFinder addressFinder = new AddressFinder();
-            IEnumerable<string> list = EPCAPICaller.Class1.GetAddresses(Postcode);
+            IEnumerable<string> list = EPCAPICaller.APIRequest.GetAddresses(Postcode);
             //if (addressFinder.Bubbles == null)
             //{
             //    List<string> list2 = new List<string>();

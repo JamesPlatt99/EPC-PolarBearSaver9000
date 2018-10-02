@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace EPCAPICaller
 {
-    public class Class1
+    public class APIRequest
     {
         public static IEnumerable<string> GetAddresses(string postcode)
         {

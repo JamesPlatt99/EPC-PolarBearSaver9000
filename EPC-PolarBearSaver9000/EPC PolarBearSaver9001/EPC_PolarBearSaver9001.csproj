@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BusinessLayer\EPCAPICaller.csproj" />
+    <ProjectReference Include="..\EPCAPICaller\EPCAPICaller.csproj" />
     <ProjectReference Include="..\DBContext\DBContext.csproj" />
   </ItemGroup>
 

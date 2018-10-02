@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EPC_PolarBearSaver9001.Models;
+using EPCPolarBearSaver9001.Models;
+using EPCPolarBearSaverAPI.Models;
 
 namespace EPC_PolarBearSaver9001.Controllers
 {
@@ -13,6 +15,48 @@ namespace EPC_PolarBearSaver9001.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult API()
+        {
+            
+              AddressFinder addressFinder = new AddressFinder
+              {
+                  Bubbles = Enumerable.Empty<string>()
+              };
+
+            return View(addressFinder);
+        }
+
+        [HttpPost]
+        public IActionResult API(string Postcode)
+        {
+            AddressFinder addressFinder = new AddressFinder();
+            IEnumerable<string> list = EPCAPICaller.Class1.GetAddresses(Postcode);
+            //if (addressFinder.Bubbles == null)
+            //{
+            //    List<string> list2 = new List<string>();
+            //    foreach (var item in list)
+            //    {
+            //        list2.ToList().Add(item);
+            //    }
+
+            //}
+            //else
+            //{
+            //    addressFinder.Bubbles.ToList().Add("These are the addresses");
+            //    foreach (var item in list)
+            //    {
+            //        addressFinder.Bubbles.ToList().Add(item);
+            //    }
+            //}
+            AddressFinder addressFinder2 = new AddressFinder
+            {
+                 Bubbles=list,
+            };
+
+            return this.View(addressFinder2);
         }
 
         public IActionResult About()
@@ -39,5 +83,7 @@ namespace EPC_PolarBearSaver9001.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

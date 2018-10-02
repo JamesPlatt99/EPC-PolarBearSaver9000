@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BusinessLayer
+namespace EPCAPICaller
 {
     public class Class1
     {

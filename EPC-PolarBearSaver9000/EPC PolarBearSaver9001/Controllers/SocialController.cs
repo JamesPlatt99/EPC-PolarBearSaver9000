@@ -36,9 +36,7 @@ namespace EPC_PolarBearSaver9001.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            Models.SocialModel model = new Models.SocialModel();
-            model.Friends = new List<DBContext.Models.AspNetUsers>();
-            model.SearchResults = new List<DBContext.Models.AspNetUsers>();
+            Models.SocialModel model = CreateNewModel();
             var test = LoggedInUser;
             return View(model);
         }
@@ -46,13 +44,13 @@ namespace EPC_PolarBearSaver9001.Controllers
         [HttpPost]
         public IActionResult Index(string searchQuery)
         {
-            Models.SocialModel model = new Models.SocialModel();
-            model.Friends = new List<AspNetUsers>();
-            model.SearchResults = _context.AspNetUsers.Where(n => n.UserName.Contains(searchQuery)).ToList();
+            Models.SocialModel model = CreateNewModel();
+            model.SearchResults = GetSearchResults(searchQuery, model);
             return View(model);
         }
 
         [HttpPost]
+        [ActionName("AddFriend")]
         public IActionResult AddFriend(string userID)
         {
             AspNetUsers friendToAdd = _context.AspNetUsers.Where(n => n.Id == userID).Single();
@@ -63,7 +61,26 @@ namespace EPC_PolarBearSaver9001.Controllers
             };
             _context.Add(newFriends);
             _context.SaveChanges();
-            return Index();
+            Models.SocialModel model = CreateNewModel();
+            return View("Index", model);
+        }
+
+        private List<AspNetUsers> GetSearchResults(string searchQuery, Models.SocialModel model)
+        {
+            List<AspNetUsers> usersToExclude = new List<AspNetUsers>();
+            usersToExclude.AddRange(model.Friends);
+            usersToExclude.Add(LoggedInUser);
+
+            return _context.AspNetUsers.Where(n => n.UserName.Contains(searchQuery))
+                                .Except(usersToExclude).ToList();
+        }
+
+        private Models.SocialModel CreateNewModel()
+        {
+            Models.SocialModel model = new Models.SocialModel();
+            model.Friends = LoggedInUser.FriendsUser1.Select(n => n.User2).ToList();
+            model.SearchResults = new List<DBContext.Models.AspNetUsers>();
+            return model;
         }
 
     }

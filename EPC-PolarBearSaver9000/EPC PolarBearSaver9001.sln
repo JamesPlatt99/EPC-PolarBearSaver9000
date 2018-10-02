@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBContext", "DBContext\DBCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EPCAPICaller", "EPCAPICaller\EPCAPICaller.csproj", "{8DF164A2-54E1-46D6-80CA-0E278503C9AD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{69D7364F-BBFE-4868-A92D-C9DDD9C3500F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8DF164A2-54E1-46D6-80CA-0E278503C9AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DF164A2-54E1-46D6-80CA-0E278503C9AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DF164A2-54E1-46D6-80CA-0E278503C9AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69D7364F-BBFE-4868-A92D-C9DDD9C3500F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69D7364F-BBFE-4868-A92D-C9DDD9C3500F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69D7364F-BBFE-4868-A92D-C9DDD9C3500F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69D7364F-BBFE-4868-A92D-C9DDD9C3500F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

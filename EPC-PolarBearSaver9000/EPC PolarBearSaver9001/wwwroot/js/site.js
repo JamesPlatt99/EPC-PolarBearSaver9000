@@ -21,7 +21,6 @@ window.onclick = function (event) {
     }
 };
 
-
 function show(ele) {
     // GET THE SELECTED VALUE FROM <select> ELEMENT AND SHOW IT.
     var msg = document.getElementById('msg');

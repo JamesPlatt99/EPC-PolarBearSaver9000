@@ -32,7 +32,7 @@ namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _context = DBContext.Context.polarBearSaver9001Context;
+            _context = DBContext.ContextBuilder.GetContext();
         }
 
         [BindProperty]

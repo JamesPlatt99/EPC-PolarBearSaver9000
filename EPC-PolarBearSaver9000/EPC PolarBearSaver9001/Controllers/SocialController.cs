@@ -12,7 +12,9 @@ namespace EPC_PolarBearSaver9001.Controllers
 {
     public class SocialController : Controller
     {
-        private readonly DBContext.Models.EPC_PolarBearSaver9001Context _context = DBContext.Context.polarBearSaver9001Context;
+        #region Properties
+
+        private readonly DBContext.Models.EPC_PolarBearSaver9001Context _context = DBContext.ContextBuilder.GetContext();
         private IHttpContextAccessor HttpContextAccessor { get; set; }
 
         private AspNetUsers _loggedInUser;
@@ -28,12 +30,18 @@ namespace EPC_PolarBearSaver9001.Controllers
                 return _loggedInUser;
             }
         }
+        #endregion
+
+        #region Constructor     
 
         public SocialController(IHttpContextAccessor httpContextAccessor)
         {
             this.HttpContextAccessor = httpContextAccessor;
         }
-        // GET: /<controller>/
+
+        #endregion
+
+        #region Actions
         public IActionResult Index()
         {
             Models.SocialModel model = CreateNewModel();
@@ -65,6 +73,20 @@ namespace EPC_PolarBearSaver9001.Controllers
             return View("Index", model);
         }
 
+        [HttpPost]
+        [ActionName("RemoveFriend")]
+        public IActionResult RemoveFriend(string userID)
+        {
+            Friends friendToRemove = _context.Friends.Where(n =>n.User1Id == LoggedInUser.Id && n.User2Id == userID).Single();
+            _context.Remove(friendToRemove);
+            _context.SaveChanges();
+            Models.SocialModel model = CreateNewModel();
+            return View("Index", model);
+        }
+        #endregion
+
+        #region Private Methods
+
         private List<AspNetUsers> GetSearchResults(string searchQuery, Models.SocialModel model)
         {
             List<AspNetUsers> usersToExclude = new List<AspNetUsers>();
@@ -82,6 +104,7 @@ namespace EPC_PolarBearSaver9001.Controllers
             model.SearchResults = new List<DBContext.Models.AspNetUsers>();
             return model;
         }
+        #endregion
 
     }
 }

@@ -26,10 +26,14 @@
         Cur friends
         <ul>
 
-        @foreach (DBContext.Models.AspNetUsers user in Model.Friends)
-        {
-            <li>@user.UserName</li>
-        }
+            @foreach (DBContext.Models.AspNetUsers user in Model.Friends)
+            {
+                <form asp-route="@Url.Action("RemoveFriend", "Social", new { userId = Model.UserID})" method="post">
+                    <label>@user.UserName</label>
+                    <input type="hidden" value="@user.Id" asp-for="UserID" />
+                    <input type="submit" formaction="/Social/RemoveFriend" />
+                </form>
+            }
         </ul>
     </div>
 </div>

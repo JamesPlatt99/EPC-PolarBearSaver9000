@@ -17,7 +17,7 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" style="height:160px;">
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 110px;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,8 +27,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
-                    <img src="~/images/professionalLogo69.png" height="100px"/><br />
-                    EPC_PolarBearSaver9001
+                    <img id="CarlosImg" src="~/images/professionalLogo69.png" style="height: 85px;" />
+                </a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" style="padding-left:150px; padding-top:30px;">
+                    EPC PolarBearSaver9001
                 </a>
             </div>
             <div class="navbar-collapse collapse">
@@ -44,7 +46,7 @@
 
     <partial name="_CookieConsentPartial" />
 
-    <div class="container body-content" style="padding-top:180px;">
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>

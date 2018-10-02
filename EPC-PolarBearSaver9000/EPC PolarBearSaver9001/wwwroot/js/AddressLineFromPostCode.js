@@ -1,12 +1,21 @@
-﻿const URL = "https://localhost:44360/";
-const ADDRESS_END_POINT = "api/address/";
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     var postcodeTextBox = document.getElementById("PostcodeTextBox");
+    var addressDropdown = document.getElementById("AddressLineDropdown");
     postcodeTextBox.addEventListener("change", function (evt) {
         GetValidAddressLines();
     });
+    addressDropdown.addEventListener("change", function (evt) {
+        EnableEPCScoreButton();
+    });
 });
+
+function EnableEPCScoreButton() {
+    var generateScoreButton = document.getElementById("GenerateScoreButton");
+    if (generateScoreButton !== undefined && generateScoreButton !== null) {
+        generateScoreButton.disabled = false;
+    }
+}
+
 function UpdateAddressDropdown(addressLineOptions) {
     var addressDropdown = document.getElementById("AddressLineDropdown");
     addressDropdown.innerHTML = "";    
@@ -21,12 +30,10 @@ function UpdateAddressDropdown(addressLineOptions) {
 
 function GenerateAddressLineOptions(response) {
     var optionsInnerHTML = "";
-    console.log(response);
     for (var row in response) {
         var address = response[row];
         optionsInnerHTML += "<option value=\"" + address + "\">" + address +"</option>";
     }
-    console.log(optionsInnerHTML);
     return optionsInnerHTML;
 }
 

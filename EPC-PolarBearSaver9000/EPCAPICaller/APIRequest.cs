@@ -19,7 +19,7 @@ namespace EPCAPICaller
         {
             IEnumerable<Rows> data = GetData(postcode);
             Rows rowAtAddress = data.Where(n => n.Address == address).SingleOrDefault();
-            int score = rowAtAddress?.EnvironmentalImpactCurrent ?? 0;
+            int score = rowAtAddress?.EnvironmentImpactCurrent ?? 0;
             return score;
         }
 

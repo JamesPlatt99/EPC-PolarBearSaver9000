@@ -31,6 +31,7 @@ body {
 .top-buffer {
     padding-top: 20px;
 }
+
 .dropbtn {
     background-color: #3498DB;
     color: white;
@@ -106,6 +107,7 @@ body {
         transform: translateX(0) rotate(720deg);
     }
 }
+
 #CarlosImg {
     animation: 5s ease-out 0s 1 spinInFromLeft;
     position: fixed;
@@ -113,6 +115,9 @@ body {
 }
 
 #CarlosImg img:active {
-        animation: spin 100s forwards;
-    }
+    animation: spin 100s forwards;
+}
 
+.EPCScore{
+    font-size: 5vh;
+}

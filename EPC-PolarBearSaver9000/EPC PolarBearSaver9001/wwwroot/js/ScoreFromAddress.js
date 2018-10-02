@@ -6,7 +6,7 @@
     });
 });
 
-//move request into site.js function to share across files
+//TODO: move request into site.js function to share across files
 function GetScore() {
     var postcode = document.getElementById("PostcodeTextBox").value.replace(" ", "");
     var addressDropdown = document.getElementById("AddressLineDropdown");
@@ -22,7 +22,7 @@ function GetScore() {
             console.log(request.response);
             var score = request.response;
             DisplayScore(score);
-            console.log(score);
+            UpdateScoreColour(score);
         };
     }
 
@@ -31,4 +31,23 @@ function GetScore() {
 function DisplayScore(score) {
     var scoreLabel = document.getElementById("EPCScoreLabel");
     scoreLabel.innerHTML = score;
+}
+
+function UpdateScoreColour(score) {
+    var scoreBackground = document.getElementById("EPCScoreLabel").parentElement.parentElement;
+    scoreBackground.style.backgroundColor = CalculateScoreColour(score);
+}
+
+function CalculateScoreColour(score){
+    var r = CalculateColourWeighting(100 - score);
+    var g = CalculateColourWeighting(score);
+    console.log("r:" + r + " g:" + g);
+    return 'rgb(' + r + ',' + g + ',' + 0 + ')';
+}
+
+function CalculateColourWeighting(score) {
+    if (score > 50) {
+        return 255;
+    }
+    return (score / 50) * 255;
 }

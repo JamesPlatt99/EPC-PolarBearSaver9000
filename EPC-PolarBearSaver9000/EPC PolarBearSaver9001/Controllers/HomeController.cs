@@ -15,6 +15,11 @@ namespace EPC_PolarBearSaver9001.Controllers
             return View();
         }
 
+        public IActionResult Social()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

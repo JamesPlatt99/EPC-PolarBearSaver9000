@@ -20,6 +20,7 @@ namespace EPC_PolarBearSaver9001
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            DBContext.ContextBuilder.SetPolarBearSaver9001Context(configuration);
         }
 
         public IConfiguration Configuration { get; }

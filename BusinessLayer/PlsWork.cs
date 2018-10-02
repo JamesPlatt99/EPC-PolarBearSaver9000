@@ -8,7 +8,7 @@ namespace EPCAPICaller
 {
     public class Class1
     {
-        public static IEnumerable<string> GetData(string postcode)
+        public static IEnumerable<string> GetAddresses(string postcode)
         {
             //string postcode = "NN72PS";
             string size = "99";

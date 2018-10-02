@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EPC_PolarBearSaver9001.Models;
 using EPCPolarBearSaver9001.Models;
-using EPCPolarBearSaverAPI.Models;
 
 namespace EPC_PolarBearSaver9001.Controllers
 {

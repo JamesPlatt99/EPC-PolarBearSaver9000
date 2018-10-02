@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@model EPC_PolarBearSaver9001.Models.SocialModel
+@{
+    ViewData["Title"] = "Social";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1>Friends</h1>
+            </div>
+            <div class="panel-body">
+                @foreach (DBContext.Models.AspNetUsers user in Model.Friends)
+                {
+                    <div class="row">
+                        <form asp-route="@Url.Action("RemoveFriend", "Social", new { userId = Model.UserID })" method="post">
+                            <div class="col-xs-4 top-buffer">
+                                @user.UserName
+                            </div>
+                            <div class="col-xs-4 top-buffer">
+                                @user.Address.FirstOrDefault()?.AddressLine1
+                            </div>
+                            <input type="hidden" value="@user.Id" asp-for="UserID" />
+                            <div class="col-xs-4">
+                                <input type="submit" formaction="/Social/RemoveFriend" value="Remove" class="btn btn-danger" />
+                            </div>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+        </div>
+        <div class="col-sm-5 ">
+            <div class="panel panel-default">
+            <div class="panel-heading">
+                <h1>Add friends</h1>
+            </div>
+            <div class="panel-body">
+                <form asp-route="@Url.Action("Index", "Social", new { searchQuery = Model.SearchQuery })" method="post">
+                    <div class="col-xs-8">
+                        <input type="text" id="searchFriendsTextBox" asp-for="SearchQuery" class="form-control col-xs-2" />
+                    </div>
+                    <div class="col-xs-4">
+                        <input type="submit" formaction="/Social/Index" value="Search" class="btn btn-primary" />
+                    </div>
+                </form>
+                <div class="top-buffer">
+                    @foreach (DBContext.Models.AspNetUsers user in Model.SearchResults)
+                    {
+                        <div class="row top-buffer">
+                            <form asp-route="@Url.Action("AddFriend", "Social", new { userId = Model.UserID })" method="post">
+                                <div class="col-xs-8">
+                                    @user.UserName
+                                </div>
+                                <input type="hidden" value="@user.Id" asp-for="UserID" />
+                                <div class="col-xs-4">
+                                    <input type="submit" formaction="/Social/AddFriend" value="Add" class="btn btn-success" />
+                                </div>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

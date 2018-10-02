@@ -3,7 +3,7 @@ const ADDRESS_END_POINT = "api/address/";
 
 $(document).ready(function () {
     var postcodeTextBox = document.getElementById("PostcodeTextBox");
-    postcodeTextBox.addEventListener("onchange", function (evt) {
+    postcodeTextBox.addEventListener("change", function (evt) {
         GetValidAddressLines();
     });
 });
@@ -31,7 +31,7 @@ function GenerateAddressLineOptions(response) {
 }
 
 function GetValidAddressLines() {
-    var postcode = document.getElementById("PostcodeTextBox").value;
+    var postcode = document.getElementById("PostcodeTextBox").value.replace(" ", "");
     var searchTerm = URL + ADDRESS_END_POINT + postcode;
     var request = new XMLHttpRequest();
     request.open('GET', searchTerm);

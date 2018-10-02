@@ -10,7 +10,6 @@ namespace EPCAPICaller
     {
         public static IEnumerable<string> GetAddresses(string postcode)
         {
-            //string postcode = "NN72PS";
             string size = "99";
 
             var client = new RestClient("https://dceas-user-site-staging.cloudapps.digital");
@@ -18,8 +17,13 @@ namespace EPCAPICaller
             IRestResponse response2 = client.Execute(request);
 
             Wrapper wrapper = JsonConvert.DeserializeObject<Wrapper>(response2.Content);
-            
-            return wrapper.rows.OrderBy(n => n.inspectionDate).GroupBy(n=>n.address).Select(n=>n.First().address);
+            List<string> rows = new List<string>();
+            var response = wrapper?.rows.OrderBy(n => n.inspectionDate).GroupBy(n => n.address).Select(n => n.First().address);
+            if(response != null)
+            {
+                rows.AddRange(response);
+            }
+            return rows;
         }
 
         public static IEnumerable<string> GetResults(string postcode)

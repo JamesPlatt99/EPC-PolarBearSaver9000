@@ -19,7 +19,6 @@ function GetScore() {
         request.send();
 
         request.onload = function () {
-            console.log(request.response);
             var score = request.response;
             DisplayScore(score);
             UpdateScoreColour(score);
@@ -41,7 +40,6 @@ function UpdateScoreColour(score) {
 function CalculateScoreColour(score){
     var r = CalculateColourWeighting(100 - score);
     var g = CalculateColourWeighting(score);
-    console.log("r:" + r + " g:" + g);
     return 'rgb(' + r + ',' + g + ',' + 0 + ')';
 }
 

@@ -45,9 +45,12 @@ namespace EPC_PolarBearSaver9001.Controllers
         #region Actions
         public IActionResult Index()
         {
-            Models.SocialModel model = CreateNewModel();
-            var test = LoggedInUser;
-            return View(model);
+            if(LoggedInUser != null)
+            {
+                Models.SocialModel model = CreateNewModel();
+                return View(model);
+            }
+            return View("UnAuthorised");
         }
 
         [HttpPost]

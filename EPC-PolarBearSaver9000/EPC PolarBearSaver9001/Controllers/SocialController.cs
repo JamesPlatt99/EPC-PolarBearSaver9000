@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using DBContext.Models;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+using System.Data.Entity;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace EPC_PolarBearSaver9001.Controllers
@@ -77,7 +78,7 @@ namespace EPC_PolarBearSaver9001.Controllers
         [ActionName("RemoveFriend")]
         public IActionResult RemoveFriend(string userID)
         {
-            Friends friendToRemove = _context.Friends.Where(n =>n.User1Id == LoggedInUser.Id && n.User2Id == userID).Single();
+            Friends friendToRemove = _context.Friends.Where(n =>n.User1Id == LoggedInUser.Id && n.User2Id == userID).First();
             _context.Remove(friendToRemove);
             _context.SaveChanges();
             Models.SocialModel model = CreateNewModel();
@@ -99,9 +100,14 @@ namespace EPC_PolarBearSaver9001.Controllers
 
         private Models.SocialModel CreateNewModel()
         {
-            Models.SocialModel model = new Models.SocialModel();
-            model.Friends = LoggedInUser.FriendsUser1.Select(n => n.User2).ToList();
-            model.SearchResults = new List<DBContext.Models.AspNetUsers>();
+            Models.SocialModel model = new Models.SocialModel
+            {
+                Friends = _context.Friends.Where(n => n.User1Id == LoggedInUser.Id)
+                                          .Select(n => n.User2)
+                                          .Include(n=>n.Address)
+                                          .ToList(),
+                SearchResults = new List<AspNetUsers>()
+            };
             return model;
         }
         #endregion

@@ -47,6 +47,11 @@ namespace DBContext.Models
                 entity.Property(e => e.UserId)
                     .HasColumnName("UserID")
                     .HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Address)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Address__UserID__6383C8BA");
             });
 
             modelBuilder.Entity<AspNetRoleClaims>(entity =>

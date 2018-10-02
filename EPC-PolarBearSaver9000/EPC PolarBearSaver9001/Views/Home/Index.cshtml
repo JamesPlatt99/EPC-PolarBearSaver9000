@@ -2,6 +2,8 @@
 @{
     ViewData["Title"] = "API";
 }
+<script src="~/js/AddressLineFromPostCode.js"></script>
+
 
 <h2>Home</h2>
 
@@ -11,41 +13,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Postcode" class="control-label"></label>
-                <input asp-for="Postcode" class="form-control" />
+                <input asp-for="Postcode" class="form-control" id="PostcodeTextBox" />
                 <span asp-validation-for="Postcode" class="text-danger"></span>
+                <select asp-for="Address1" class="form-control" id="AddressLineDropdown" disabled="disabled"></select>
             </div>
-
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Get Score" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
-<div class="row">
 
-    @*<table>
-            @foreach (var item in Model.Bubbles)
-            {
-                <td>
-                    @Html.DisplayFor(modelItem => item)
-                </td>
-            }
-        </table>*@
-
-</div>
-
-@*@string.Join("; ", EPCAPICaller.Class1.GetAddresses());*@
-
-<div class="dropdown">
-    <button onclick="showAddressDropDown()" class="dropbtn">Select Address</button>
-    <div id="myDropdown" class="dropdown-content">
-
-
-        @foreach (var item in Model.Bubbles)
-        {
-            @Html.DisplayFor(modelItem => item); <br />
-        }
-
-
-    </div>
-</div>

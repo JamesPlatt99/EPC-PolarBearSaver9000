@@ -8,36 +8,34 @@ namespace EPCAPICaller
 {
     public class APIRequest
     {
+        private const int SIZE = 99;
         public static IEnumerable<string> GetAddresses(string postcode)
         {
-            string size = "99";
-
-            var client = new RestClient("https://dceas-user-site-staging.cloudapps.digital");
-            var request = new RestRequest($"api/epc?postcode={postcode}&size={size}", Method.GET);
-            IRestResponse response2 = client.Execute(request);
-
-            Wrapper wrapper = JsonConvert.DeserializeObject<Wrapper>(response2.Content);
-            List<string> rows = new List<string>();
-            var response = wrapper?.rows.OrderBy(n => n.inspectionDate).GroupBy(n => n.address).Select(n => n.First().address);
-            if(response != null)
-            {
-                rows.AddRange(response);
-            }
-            return rows;
+            IEnumerable<string> addresses = GetData(postcode).Select(n=>n.Address);            
+            return addresses;
         }
 
-        public static IEnumerable<string> GetResults(string postcode)
+        public static int GetScore(string postcode, string address)
         {
-            //string postcode = "NN72PS";
-            string size = "99";
+            IEnumerable<Rows> data = GetData(postcode);
+            Rows rowAtAddress = data.Where(n => n.Address == address).SingleOrDefault();
+            int score = rowAtAddress?.EnvironmentalImpactCurrent ?? 0;
+            return score;
+        }
 
+        private static IEnumerable<Rows> GetData(string postcode)
+        {
             var client = new RestClient("https://dceas-user-site-staging.cloudapps.digital");
-            var request = new RestRequest($"api/epc?postcode={postcode}&size={size}", Method.GET);
-            IRestResponse response2 = client.Execute(request);
-
-            Wrapper wrapper = JsonConvert.DeserializeObject<Wrapper>(response2.Content);
-
-            return wrapper.rows.Where(n=>n.address.Equals(postcode)).Select(n=>n.address).OrderBy(n=>n);
+            var request = new RestRequest($"api/epc?postcode={postcode}&size={SIZE}", Method.GET);
+            IRestResponse response = client.Execute(request);
+            var results = JsonConvert.DeserializeObject<Wrapper>(response.Content);
+            var data = new List<Rows>();
+            if (results != null)
+            {
+                var rows = results.rows.OrderBy(n => n.InspectionDate).GroupBy(n => n.Address).Select(n => n.First());
+                data.AddRange(rows);
+            }
+            return data;
         }
 
     }

@@ -8,9 +8,13 @@ namespace EPCPolarBearSaverAPI.Models
 {
     public class Rows
     {
-        public string address { get; set; }
+        [DeserializeAs(Name = "address")]
+        public string Address { get; set; }
 
         [DeserializeAs(Name = "inspection-date")]
-        public DateTime inspectionDate { get; set; }
+        public DateTime InspectionDate { get; set; }
+
+        [DeserializeAs(Name = "environment-impact-current")]
+        public int EnvironmentalImpactCurrent { get; set; }
     }
 }

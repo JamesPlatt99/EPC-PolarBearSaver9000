@@ -23,7 +23,7 @@ namespace EPC_PolarBearSaver9001.Controllers
         {
             get
             {
-                if(_loggedInUser == null && HttpContextAccessor.HttpContext.User != null)
+                if(_loggedInUser == null && HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier) != null)
                 {
                     var userId = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
                     _loggedInUser = _context.AspNetUsers.Where(n => n.Id == userId).Single();

@@ -15,11 +15,5 @@ namespace EPCPolarBearSaver9001.Models
 
         [DisplayName("Address")]
         public string Address1 { get; set; }
-
-        public List<Rows> ListOfAddresses { get; set; }
-
-        public List<Rows> Rows { get; set; }
-
-        public IEnumerable<string> Bubbles { get; set; }
     }
 }

@@ -6,11 +6,39 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EPC_PolarBearSaver9001.Models;
 using EPCPolarBearSaver9001.Models;
+using Microsoft.AspNetCore.Http;
+using DBContext.Models;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace EPC_PolarBearSaver9001.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController(IHttpContextAccessor httpContextAccessor)
+        {
+            this.HttpContextAccessor = httpContextAccessor;
+        }
+        #region Properties
+
+        private readonly DBContext.Models.EPC_PolarBearSaver9001Context _context = DBContext.ContextBuilder.GetContext();
+        private IHttpContextAccessor HttpContextAccessor { get; set; }
+
+        private AspNetUsers _loggedInUser;
+        private AspNetUsers LoggedInUser
+        {
+            get
+            {
+                if (_loggedInUser == null && HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier) != null)
+                {
+                    var userId = HttpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                    _loggedInUser = _context.AspNetUsers.Where(n => n.Id == userId).Include(n=>n.Address).Single();
+                }
+                return _loggedInUser;
+            }
+        }
+        #endregion
+
         public IActionResult RewardsPage()
         {
             return View();
@@ -19,43 +47,16 @@ namespace EPC_PolarBearSaver9001.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            
-              AddressFinder addressFinder = new AddressFinder
-              {
-                  Bubbles = Enumerable.Empty<string>()
-              };
+            Address address = null;                
+            if (LoggedInUser != null){address = _context.Address.Where(n => n.UserId == LoggedInUser.Id).SingleOrDefault();}
 
-            return View(addressFinder);
-        }
-
-        [HttpPost]
-        public IActionResult Index(string Postcode)
-        {
-            AddressFinder addressFinder = new AddressFinder();
-            IEnumerable<string> list = EPCAPICaller.APIRequest.GetAddresses(Postcode);
-            //if (addressFinder.Bubbles == null)
-            //{
-            //    List<string> list2 = new List<string>();
-            //    foreach (var item in list)
-            //    {
-            //        list2.ToList().Add(item);
-            //    }
-
-            //}
-            //else
-            //{
-            //    addressFinder.Bubbles.ToList().Add("These are the addresses");
-            //    foreach (var item in list)
-            //    {
-            //        addressFinder.Bubbles.ToList().Add(item);
-            //    }
-            //}
-            AddressFinder addressFinder2 = new AddressFinder
+            AddressFinder addressFinder = new AddressFinder
             {
-                 Bubbles=list,
+                Address1 = address?.AddressLine1 ?? String.Empty,
+                Postcode = address?.PostCode ?? String.Empty,
             };
 
-            return this.View(addressFinder2);
+            return View(addressFinder);
         }
 
         public IActionResult About()

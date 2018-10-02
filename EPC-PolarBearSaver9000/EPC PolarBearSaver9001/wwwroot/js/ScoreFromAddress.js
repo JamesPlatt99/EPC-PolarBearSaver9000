@@ -4,6 +4,7 @@
         GetScore();
         evt.preventDefault();
     });
+    CheckAddressPrefilled();
 });
 
 //TODO: move request into site.js function to share across files
@@ -48,4 +49,19 @@ function CalculateColourWeighting(score) {
         return 255;
     }
     return (score / 50) * 255;
+}
+
+function CheckAddressPrefilled() {
+    var postCodeTextBox = document.getElementById("PostcodeTextBox");
+    var addressLineDropdown = document.getElementById("AddressLineDropdown");
+    var generateScoreButton = document.getElementById("GenerateScoreButton");
+
+    if (postCodeTextBox !== null && generateScoreButton !== null) {
+        if (postCodeTextBox.value.length > 0 && addressLineDropdown.value.length > 0) {
+            generateScoreButton.disabled = false;
+            addressLineDropdown.disabled = false;
+            GetScore();
+        }
+    }
+
 }

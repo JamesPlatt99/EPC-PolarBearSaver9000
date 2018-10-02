@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BusinessLayer\BusinessLayer.csproj" />
     <ProjectReference Include="..\DBContext\DBContext.csproj" />
   </ItemGroup>
 

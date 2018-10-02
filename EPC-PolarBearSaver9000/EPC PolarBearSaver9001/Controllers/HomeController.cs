@@ -16,6 +16,11 @@ namespace EPC_PolarBearSaver9001.Controllers
             return View();
         }
 
+        public IActionResult RewardsPage()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult API()
         {

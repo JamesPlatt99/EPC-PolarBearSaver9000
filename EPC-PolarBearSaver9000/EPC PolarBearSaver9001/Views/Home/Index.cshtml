@@ -5,36 +5,36 @@
 <script src="~/js/AddressLineFromPostCode.js"></script>
 <script src="~/js/ScoreFromAddress.js"></script>
 
-    <div class="container">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="col-lg-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3>Enter address</h3>
-                </div>
-                <div class="panel-body">
-                    <label asp-for="Postcode" class="control-label"></label>
-                    <input asp-for="Postcode" class="form-control" id="PostcodeTextBox" />
-                    <span asp-validation-for="Postcode" class="text-danger"></span>
-                    <label asp-for="Address1" class="control-label" value"></label>
-                    <select asp-for="Address1" class="form-control" id="AddressLineDropdown" disabled>
-                        <option value="@Model.Address1">@Model.Address1</option>
-                    </select>
-                    <br />
-                    <input type="submit" value="Get Score" id="GenerateScoreButton" class="btn btn-default" disabled /><br />
-                </div>
+<div class="container">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-lg-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>Enter address</h3>
             </div>
-        </div>
-        <div class="form-group col-lg-3"">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3>EPC Score</h3>
-                </div>
-                <div class="panel-body">
-                    <center>
-                        <div id="EPCScoreLabel" class="EPCScore"></div>
-                    </center>
-                </div>
+            <div class="panel-body">
+                <label asp-for="Postcode" class="control-label"></label>
+                <input asp-for="Postcode" class="form-control" id="PostcodeTextBox" />
+                <span asp-validation-for="Postcode" class="text-danger"></span>
+                <label asp-for="Address1" class="control-label" value"></label>
+                <select asp-for="Address1" class="form-control" id="AddressLineDropdown" disabled>
+                    <option value="@Model.Address1">@Model.Address1</option>
+                </select>
+                <br />
+                <input type="submit" value="Get Score" id="GenerateScoreButton" class="btn btn-default" disabled /><br />
             </div>
         </div>
     </div>
+    <div class="form-group col-lg-3" ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>EPC Score</h3>
+            </div>
+            <div class="panel-body">
+                <center>
+                    <div id="EPCScoreLabel" class="EPCScore"></div>
+                </center>
+            </div>
+        </div>
+    </div>
+</div>

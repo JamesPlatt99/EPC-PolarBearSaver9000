@@ -30,7 +30,7 @@
                             </div>
                             <input type="hidden" value="@user.Id" asp-for="UserID" />
                             <div class="col-xs-2 top-buffer">
-                                <button type="submit" class="btn btn-danger">
+                                <button type="submit" class="btn btn-danger" formaction="/Social/RemoveFriend">
                                     Delete<i class="icon-user icon-white"></i>
                                     <i class="glyphicon glyphicon-remove"></i>
                                 </button>
@@ -64,7 +64,7 @@
                                     </div>
                                     <input type="hidden" value="@user.Id" asp-for="UserID" />
                                     <div class="col-xs-4">
-                                        <button type="submit" class="btn btn-success">
+                                        <button type="submit" class="btn btn-success" formaction="/Social/AddFriend">
                                             Add <i class="glyphicon glyphicon-ok"></i>
                                         </button>
                                     </div>

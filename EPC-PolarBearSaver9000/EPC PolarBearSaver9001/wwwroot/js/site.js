@@ -4,6 +4,7 @@
 // Write your JavaScript code.
 
 
-const URL = "https://localhost:44360/";
+//const URL = "https://localhost:44360/";
+const URL = "http://polarbearapi.azurewebsites.net/";
 const ADDRESS_END_POINT = "api/address/";
 const SCORE_END_POINT = "api/score/";

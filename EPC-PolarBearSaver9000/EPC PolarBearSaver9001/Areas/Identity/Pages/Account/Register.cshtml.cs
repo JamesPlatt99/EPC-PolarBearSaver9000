@@ -53,13 +53,11 @@ namespace EPC_PolarBearSaver9001.Areas.Identity.Pages.Account
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-            [Required]
             [StringLength(8, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.PostalCode)]
             [Display(Name = "Postcode")]
             public string PostCode { get; set; }
 
-            [Required]
             [StringLength(255, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 1)]
             [DataType(DataType.Text)]
             [Display(Name = "Address Line 1")]

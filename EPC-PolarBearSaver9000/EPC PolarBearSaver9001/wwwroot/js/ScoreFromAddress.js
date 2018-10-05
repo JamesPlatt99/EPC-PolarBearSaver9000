@@ -22,6 +22,7 @@ function GetScore() {
         request.onload = function () {
             var score = request.response;
             DisplayScore(score);
+            DisplaySavings(score);
             UpdateScoreColour(score);
         };
     }
@@ -31,6 +32,12 @@ function GetScore() {
 function DisplayScore(score) {
     var scoreLabel = document.getElementById("EPCScoreLabel");
     scoreLabel.innerHTML = score;
+}
+
+function DisplaySavings(score) {
+    var scoreLabel = document.getElementById("SavingsLabel");
+    var savings = 400 * ((100 - score) / 100);
+    scoreLabel.innerHTML = "You could save £" + savings;
 }
 
 function UpdateScoreColour(score) {
